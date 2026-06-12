@@ -1,14 +1,13 @@
-import { gradientTokens, tokens } from "../constants/theme";
-import { ThemeColors } from "../types/theme";
+import { Appearance } from 'react-native';
 
-export function buildTheme(index: 0 | 1, isDark: boolean): ThemeColors {
-  const flat = Object.fromEntries(
-    Object.entries(tokens).map(([k, v]) => [k, v[index]]),
-  );
+import { ThemePreference } from '@/shared/types/theme';
 
-  const gradients = Object.fromEntries(
-    Object.entries(gradientTokens).map(([k, v]) => [k, v[index]]),
-  );
+export function resolveEffectiveTheme(
+  preference: ThemePreference | undefined
+): Exclude<ThemePreference, 'system'> {
+  if (!preference || preference === 'system') {
+    return Appearance.getColorScheme() === 'dark' ? 'dark' : 'light';
+  }
 
-  return { ...flat, ...gradients, isDark } as ThemeColors;
+  return preference;
 }
