@@ -1,11 +1,11 @@
-import authEnUs from './en-US/auth';
-import commonEnUs from './en-US/common';
-import errorEnUs from './en-US/error';
-import uiEnUs from './en-US/ui';
-import authPtBr from './pt-BR/auth';
-import commonPtBr from './pt-BR/common';
-import errorPtBr from './pt-BR/error';
-import uiPtBr from './pt-BR/ui';
+import authEnUs from '@/locales/en-US/auth';
+import commonEnUs from '@/locales/en-US/common';
+import errorEnUs from '@/locales/en-US/error';
+import uiEnUs from '@/locales/en-US/ui';
+import authPtBr from '@/locales/pt-BR/auth';
+import commonPtBr from '@/locales/pt-BR/common';
+import errorPtBr from '@/locales/pt-BR/error';
+import uiPtBr from '@/locales/pt-BR/ui';
 
 export const resources = {
   'en-US': {
