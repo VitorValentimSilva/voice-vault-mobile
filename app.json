@@ -7,7 +7,7 @@
     "icon": "./assets/voice-vault-play-store.png",
     "scheme": "voice-vault",
     "userInterfaceStyle": "automatic",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": ["assets/**/*"],
     "ios": {
       "icon": "./assets/voice-vault-app-store.png",
       "bundleIdentifier": "com.vitorvalem.voicevault",
@@ -32,11 +32,9 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#0d0b1a",
-          "resizeMode": "contain",
-          "android": {
-            "image": "./assets/voice-vault-play-store.png",
-            "imageWidth": 94
-          }
+          "image": "./assets/voice-vault-play-store.png",
+          "imageWidth": 94,
+          "resizeMode": "contain"
         }
       ],
       [
@@ -57,11 +55,22 @@
         "expo-font",
         {
           "fonts": [
-            "./assets/fonts/PlusJakartaSans-Regular.ttf",
-            "./assets/fonts/PlusJakartaSans-Medium.ttf",
-            "./assets/fonts/PlusJakartaSans-SemiBold.ttf",
-            "./assets/fonts/PlusJakartaSans-Bold.ttf",
-            "./assets/fonts/PlusJakartaSans-ExtraBold.ttf"
+            "./assets/fonts/plus_jakarta_sans_extra_light.ttf",
+            "./assets/fonts/plus_jakarta_sans_extra_light_italic.ttf",
+            "./assets/fonts/plus_jakarta_sans_light.ttf",
+            "./assets/fonts/plus_jakarta_sans_light_italic.ttf",
+            "./assets/fonts/plus_jakarta_sans_regular.ttf",
+            "./assets/fonts/plus_jakarta_sans_italic.ttf",
+            "./assets/fonts/plus_jakarta_sans_medium.ttf",
+            "./assets/fonts/plus_jakarta_sans_medium_italic.ttf",
+            "./assets/fonts/plus_jakarta_sans_semi_bold.ttf",
+            "./assets/fonts/plus_jakarta_sans_semi_bold_italic.ttf",
+            "./assets/fonts/plus_jakarta_sans_bold.ttf",
+            "./assets/fonts/plus_jakarta_sans_bold_italic.ttf",
+            "./assets/fonts/plus_jakarta_sans_extra_bold.ttf",
+            "./assets/fonts/plus_jakarta_sans_extra_bold_italic.ttf",
+            "./assets/fonts/plus_jakarta_sans_black.ttf",
+            "./assets/fonts/plus_jakarta_sans_black_italic.ttf"
           ]
         }
       ]
@@ -82,7 +91,7 @@
     "updates": {
       "enabled": true,
       "checkAutomatically": "ON_LOAD",
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 3000
     }
   }
 }
