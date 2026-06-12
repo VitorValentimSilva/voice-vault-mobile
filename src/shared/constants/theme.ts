@@ -1,76 +1,236 @@
-import { buildTheme } from "../utils/theme";
+import { DarkTheme, DefaultTheme } from 'expo-router/react-navigation';
 
-export const tokens = {
-  background: ["#F5F3FF", "#0D0B1A"],
-  backgroundDeep: ["#EDE9FF", "#0A0818"],
-  surface: ["#FFFFFF", "#120F24"],
-  surfaceElevated: ["#EDE9FF", "#1C1638"],
-  surfaceInput: ["#FAFAFE", "#0F0B22"],
-  surfaceHover: ["#F0ECFF", "#2A2050"],
-  tabBarBackground: ["#FFFFFF", "#120F24"],
-  text: ["#1A1035", "#E4DEFF"],
-  textSecondary: ["#5C4E8A", "#8A7AB8"],
-  textMuted: ["#6B5C9A", "#5C4E8A"],
-  primary: ["#6B3FE0", "#7C5AF6"],
-  primaryHover: ["#4A22A8", "#9B7EFF"],
-  onPrimary: ["#FFFFFF", "#E4DEFF"],
-  primarySoftBg: ["rgba(107,63,224,0.08)", "rgba(124,90,246,0.12)"],
-  primarySoftBorder: ["rgba(107,63,224,0.20)", "rgba(124,90,246,0.25)"],
-  primarySoftText: ["#4A22A8", "#9B7EFF"],
-  accent: ["#00897A", "#00B2A0"],
-  accentSoftBg: ["rgba(0,137,122,0.10)", "rgba(0,178,160,0.12)"],
-  accentSoftBorder: ["rgba(0,137,122,0.20)", "rgba(0,178,160,0.22)"],
-  accentSoftText: ["#006B5E", "#00E1C8"],
-  border: ["#C8C3E8", "#2E2560"],
-  borderSubtle: ["#DDD8F5", "#3A2D70"],
-  borderStrong: ["#A89EC8", "#5C4E8A"],
-  borderFocus: ["#6B3FE0", "#7C5AF6"],
-  borderAccent: ["#00897A", "#00B2A0"],
-  success: ["#16A34A", "#22C55E"],
-  successSoftBg: ["rgba(22,163,74,0.08)", "rgba(34,197,94,0.12)"],
-  successSoftText: ["#15803D", "#4ADE80"],
-  error: ["#DC2626", "#EF4444"],
-  errorSoftBg: ["rgba(220,38,38,0.08)", "rgba(239,68,68,0.12)"],
-  warning: ["#CA8A04", "#F59E0B"],
-  warningSoftBg: ["rgba(202,138,4,0.10)", "rgba(245,158,11,0.12)"],
-  warningSoftText: ["#854D0E", "#FCD34D"],
-  iconDefault: ["#8A7AB8", "#5C4E8A"],
-  iconActive: ["#6B3FE0", "#9B7EFF"],
-  recordingActive: ["#DC2626", "#EF4444"],
-  recordingActiveBg: ["rgba(220,38,38,0.12)", "rgba(239,68,68,0.18)"],
-  waveformBar: ["#6B3FE0", "#7C5AF6"],
-  waveformBarActive: ["#00897A", "#00B2A0"],
-  waveformTrack: ["#EDE9FF", "#1C1638"],
-  inputBg: ["#FAFAFE", "#0F0B22"],
-  inputPlaceholder: ["#A89EC8", "#5C4E8A"],
-  inputFocusBorder: ["#6B3FE0", "#7C5AF6"],
-  progressTrack: ["#E8E4FF", "#1C1638"],
-  progressFill: ["#6B3FE0", "#7C5AF6"],
-  progressWarn: ["#CA8A04", "#F4A621"],
-  progressCritical: ["#DC2626", "#EF4444"],
-  planPro: ["#B45309", "#F4A621"],
-  planProSoftBg: ["rgba(180,83,9,0.08)", "rgba(244,166,33,0.15)"],
-  planFree: ["#7C3AED", "#C084FC"],
-  planFreeSoftBg: ["rgba(124,58,237,0.08)", "rgba(192,132,252,0.12)"],
-  skeletonBase: ["#EDE9FF", "#1C1638"],
-  skeletonShimmer: ["#DDD8F5", "#2E2560"],
-  overlay: ["rgba(26,16,53,0.4)", "rgba(13,11,26,0.75)"],
-  avatarBg: ["#EDE9FF", "#2E2560"],
-  avatarText: ["#4A22A8", "#9B7EFF"],
-  avatarOnline: ["#16A34A", "#22C55E"],
-  glow: ["rgba(107,63,224,0.35)", "rgba(124,90,246,0.45)"],
-} as const satisfies Record<string, readonly [string, string]>;
+import { ThemePreference } from '@/shared/types/theme';
 
-export const gradientTokens = {
-  gradientBrand: [
-    ["#6B3FE0", "#00897A"],
-    ["#7C5AF6", "#00B2A0"],
-  ] as const,
-  gradientSurface: [
-    ["#F5F3FF", "#EDE9FF"],
-    ["#0D0B1A", "#120F24"],
-  ] as const,
-} as const;
+export const DEFAULT_THEME_PREFERENCE: ThemePreference = 'system';
 
-export const lightTheme = buildTheme(0, false);
-export const darkTheme = buildTheme(1, true);
+export const THEME = {
+  light: {
+    background: 'hsl(252 100% 98%)',
+    foreground: 'hsl(252 34% 13%)',
+
+    card: 'hsl(0 0% 100%)',
+    cardForeground: 'hsl(252 34% 13%)',
+
+    popover: 'hsl(0 0% 100%)',
+    popoverForeground: 'hsl(252 34% 13%)',
+
+    primary: 'hsl(256 72% 56%)',
+    primaryForeground: 'hsl(0 0% 100%)',
+
+    secondary: 'hsl(252 100% 95%)',
+    secondaryForeground: 'hsl(252 34% 13%)',
+
+    muted: 'hsl(252 100% 96%)',
+    mutedForeground: 'hsl(252 15% 44%)',
+
+    accent: 'hsl(173 100% 24%)',
+    accentForeground: 'hsl(0 0% 100%)',
+
+    destructive: 'hsl(0 72% 51%)',
+    destructiveForeground: 'hsl(0 0% 100%)',
+
+    border: 'hsl(252 35% 89%)',
+    input: 'hsl(252 35% 89%)',
+    ring: 'hsl(256 72% 56%)',
+
+    radius: '0.875rem',
+
+    backgroundDeep: 'hsl(252 100% 96%)',
+    surfaceElevated: 'hsl(0 0% 100%)',
+    surfaceHover: 'hsl(252 100% 97%)',
+    tabBar: 'hsl(0 0% 100%)',
+
+    inputBg: 'hsl(252 100% 99%)',
+    inputPlaceholder: 'hsl(252 12% 54%)',
+    inputFocusBorder: 'hsl(256 72% 56%)',
+
+    success: 'hsl(142 76% 30%)',
+    successForeground: 'hsl(0 0% 100%)',
+
+    warning: 'hsl(38 92% 33%)',
+    warningForeground: 'hsl(0 0% 100%)',
+
+    info: 'hsl(196 85% 35%)',
+    infoForeground: 'hsl(0 0% 100%)',
+
+    iconDefault: 'hsl(252 10% 54%)',
+    iconActive: 'hsl(256 72% 56%)',
+
+    recording: 'hsl(0 72% 51%)',
+    recordingBg: 'hsl(0 72% 51%)',
+
+    waveformBar: 'hsl(256 72% 56%)',
+    waveformBarActive: 'hsl(173 100% 24%)',
+    waveformTrack: 'hsl(252 100% 94%)',
+
+    progressTrack: 'hsl(252 30% 90%)',
+    progressFill: 'hsl(256 72% 56%)',
+    progressWarn: 'hsl(38 92% 33%)',
+    progressCritical: 'hsl(0 72% 51%)',
+
+    skeletonBase: 'hsl(252 100% 96%)',
+    skeletonShimmer: 'hsl(252 30% 90%)',
+
+    overlay: 'rgba(29, 26, 43, 0.72)',
+
+    avatarBg: 'hsl(252 100% 96%)',
+    avatarText: 'hsl(256 72% 42%)',
+    avatarOnline: 'hsl(142 76% 30%)',
+
+    planPro: 'hsl(35 95% 33%)',
+    planProSoftBg: 'rgba(199, 125, 0, 0.12)',
+    planFree: 'hsl(256 72% 56%)',
+    planFreeSoftBg: 'rgba(107, 63, 224, 0.12)',
+
+    transcriptText: 'hsl(252 34% 13%)',
+    transcriptTimestamp: 'hsl(252 15% 44%)',
+    transcriptHighlight: 'hsl(256 72% 56%)',
+    transcriptSpeaker: 'hsl(252 100% 95%)',
+    transcriptSpeakerText: 'hsl(256 72% 42%)',
+
+    chart1: 'hsl(256 72% 56%)',
+    chart2: 'hsl(173 100% 24%)',
+    chart3: 'hsl(142 76% 30%)',
+    chart4: 'hsl(38 92% 33%)',
+    chart5: 'hsl(0 72% 51%)',
+
+    logo: {
+      bgStart: '#EDE9FF',
+      bgEnd: '#D4CAFF',
+      waveStart: '#6B3FE0',
+      waveEnd: '#00897A',
+      ellipseFill: 'rgba(107,63,224,0.06)',
+      shieldFill: 'rgba(107,63,224,0.10)',
+      shieldStroke: '#6B3FE0',
+    },
+  },
+
+  dark: {
+    background: 'hsl(251 44% 7%)',
+    foreground: 'hsl(252 100% 96%)',
+
+    card: 'hsl(251 38% 11%)',
+    cardForeground: 'hsl(252 100% 96%)',
+
+    popover: 'hsl(251 38% 11%)',
+    popoverForeground: 'hsl(252 100% 96%)',
+
+    primary: 'hsl(253 90% 70%)',
+    primaryForeground: 'hsl(251 44% 7%)',
+
+    secondary: 'hsl(255 35% 16%)',
+    secondaryForeground: 'hsl(252 100% 96%)',
+
+    muted: 'hsl(255 35% 16%)',
+    mutedForeground: 'hsl(260 30% 60%)',
+
+    accent: 'hsl(173 100% 35%)',
+    accentForeground: 'hsl(251 44% 7%)',
+
+    destructive: 'hsl(0 84% 50%)',
+    destructiveForeground: 'hsl(0 0% 100%)',
+
+    border: 'hsl(255 28% 21%)',
+    input: 'hsl(255 28% 21%)',
+    ring: 'hsl(253 90% 70%)',
+
+    radius: '0.875rem',
+
+    backgroundDeep: 'hsl(251 44% 5%)',
+    surfaceElevated: 'hsl(251 38% 11%)',
+    surfaceHover: 'hsl(255 35% 16%)',
+    tabBar: 'hsl(251 38% 11%)',
+
+    inputBg: 'hsl(251 38% 11%)',
+    inputPlaceholder: 'hsl(260 22% 51%)',
+    inputFocusBorder: 'hsl(253 90% 70%)',
+
+    success: 'hsl(142 76% 30%)',
+    successForeground: 'hsl(0 0% 100%)',
+
+    warning: 'hsl(38 92% 33%)',
+    warningForeground: 'hsl(0 0% 100%)',
+
+    info: 'hsl(196 85% 35%)',
+    infoForeground: 'hsl(0 0% 100%)',
+
+    iconDefault: 'hsl(260 22% 51%)',
+    iconActive: 'hsl(253 90% 70%)',
+
+    recording: 'hsl(0 84% 50%)',
+    recordingBg: 'hsl(0 84% 50%)',
+
+    waveformBar: 'hsl(253 90% 70%)',
+    waveformBarActive: 'hsl(173 100% 35%)',
+    waveformTrack: 'hsl(255 35% 16%)',
+
+    progressTrack: 'hsl(255 35% 16%)',
+    progressFill: 'hsl(253 90% 70%)',
+    progressWarn: 'hsl(38 92% 33%)',
+    progressCritical: 'hsl(0 84% 50%)',
+
+    skeletonBase: 'hsl(255 35% 16%)',
+    skeletonShimmer: 'hsl(255 28% 21%)',
+
+    overlay: 'rgba(6, 5, 16, 0.72)',
+
+    avatarBg: 'hsl(255 28% 21%)',
+    avatarText: 'hsl(253 90% 72%)',
+    avatarOnline: 'hsl(142 76% 30%)',
+
+    planPro: 'hsl(35 95% 33%)',
+    planProSoftBg: 'rgba(199, 125, 0, 0.16)',
+    planFree: 'hsl(253 90% 70%)',
+    planFreeSoftBg: 'rgba(139, 110, 247, 0.16)',
+
+    transcriptText: 'hsl(252 100% 96%)',
+    transcriptTimestamp: 'hsl(260 30% 60%)',
+    transcriptHighlight: 'hsl(253 90% 70%)',
+    transcriptSpeaker: 'hsl(255 35% 16%)',
+    transcriptSpeakerText: 'hsl(253 90% 72%)',
+
+    chart1: 'hsl(253 90% 70%)',
+    chart2: 'hsl(173 100% 35%)',
+    chart3: 'hsl(142 76% 30%)',
+    chart4: 'hsl(38 92% 33%)',
+    chart5: 'hsl(0 84% 50%)',
+
+    logo: {
+      bgStart: '#1C1638',
+      bgEnd: '#2E2560',
+      waveStart: '#7C5AF6',
+      waveEnd: '#00B2A0',
+      ellipseFill: 'rgba(155,126,255,0.07)',
+      shieldFill: 'rgba(124,90,246,0.18)',
+      shieldStroke: '#7C5AF6',
+    },
+  },
+};
+
+export const NAV_THEME = {
+  light: {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: THEME.light.background,
+      border: THEME.light.border,
+      card: THEME.light.card,
+      notification: THEME.light.destructive,
+      primary: THEME.light.primary,
+      text: THEME.light.foreground,
+    },
+  },
+  dark: {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      background: THEME.dark.background,
+      border: THEME.dark.border,
+      card: THEME.dark.card,
+      notification: THEME.dark.destructive,
+      primary: THEME.dark.primary,
+      text: THEME.dark.foreground,
+    },
+  },
+};
