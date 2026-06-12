@@ -2,160 +2,196 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-background: #f5f3ff;
-  --color-background-deep: #ede9ff;
-  --color-surface: #ffffff;
-  --color-surface-elevated: #ede9ff;
-  --color-surface-input: #fafafe;
-  --color-surface-hover: #f0ecff;
-  --color-tab-bar: #ffffff;
-
-  --color-text: #1a1035;
-  --color-text-secondary: #5c4e8a;
-  --color-text-muted: #6b5c9a;
-
-  --color-primary: #6b3fe0;
-  --color-primary-hover: #4a22a8;
-  --color-on-primary: #ffffff;
-  --color-primary-soft-bg: rgba(107, 63, 224, 0.08);
-  --color-primary-soft-border: rgba(107, 63, 224, 0.2);
-  --color-primary-soft-text: #4a22a8;
-
-  --color-accent: #00897a;
-  --color-accent-soft-bg: rgba(0, 137, 122, 0.1);
-  --color-accent-soft-border: rgba(0, 137, 122, 0.2);
-  --color-accent-soft-text: #006b5e;
-
-  --color-border: #c8c3e8;
-  --color-border-subtle: #ddd8f5;
-  --color-border-strong: #a89ec8;
-  --color-border-focus: #6b3fe0;
-
-  --color-success: #16a34a;
-  --color-success-soft-bg: rgba(22, 163, 74, 0.08);
-  --color-success-soft-text: #15803d;
-  --color-error: #dc2626;
-  --color-error-soft-bg: rgba(220, 38, 38, 0.08);
-  --color-warning: #ca8a04;
-  --color-warning-soft-bg: rgba(202, 138, 4, 0.1);
-  --color-warning-soft-text: #854d0e;
-
-  --color-icon-default: #8a7ab8;
-  --color-icon-active: #6b3fe0;
-
-  --color-recording-active: #dc2626;
-  --color-recording-active-bg: rgba(220, 38, 38, 0.12);
-  --color-waveform-bar: #6b3fe0;
-  --color-waveform-bar-active: #00897a;
-  --color-waveform-track: #ede9ff;
-
-  --color-input-bg: #fafafe;
-  --color-input-placeholder: #a89ec8;
-  --color-input-focus-border: #6b3fe0;
-
-  --color-progress-track: #e8e4ff;
-  --color-progress-fill: #6b3fe0;
-  --color-progress-warn: #ca8a04;
-  --color-progress-critical: #dc2626;
-
-  --color-skeleton-base: #ede9ff;
-  --color-skeleton-shimmer: #ddd8f5;
-
-  --color-overlay: rgba(26, 16, 53, 0.4);
-
-  --color-avatar-bg: #ede9ff;
-  --color-avatar-text: #4a22a8;
-  --color-avatar-online: #16a34a;
-
-  --color-plan-pro: #b45309;
-  --color-plan-pro-soft-bg: rgba(180, 83, 9, 0.08);
-  --color-plan-free: #7c3aed;
-  --color-plan-free-soft-bg: rgba(124, 58, 237, 0.08);
-
-  --color-transcript-text: #1a1035;
-  --color-transcript-timestamp: #8a7ab8;
-  --color-transcript-highlight: rgba(107, 63, 224, 0.14);
-  --color-transcript-speaker: #ede9ff;
-  --color-transcript-speaker-text: #4a22a8;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --color-background: #0d0b1a;
-    --color-background-deep: #0a0818;
-    --color-surface: #120f24;
-    --color-surface-elevated: #1c1638;
-    --color-surface-input: #0f0b22;
-    --color-surface-hover: #2a2050;
-    --color-tab-bar: #120f24;
+    color-scheme: light;
 
-    --color-text: #e4deff;
-    --color-text-secondary: #8a7ab8;
-    --color-text-muted: #5c4e8a;
+    --background: 252 100% 98%;
+    --foreground: 252 34% 13%;
 
-    --color-primary: #7c5af6;
-    --color-primary-hover: #9b7eff;
-    --color-on-primary: #e4deff;
-    --color-primary-soft-bg: rgba(124, 90, 246, 0.12);
-    --color-primary-soft-border: rgba(124, 90, 246, 0.25);
-    --color-primary-soft-text: #9b7eff;
+    --card: 0 0% 100%;
+    --card-foreground: 252 34% 13%;
 
-    --color-accent: #00b2a0;
-    --color-accent-soft-bg: rgba(0, 178, 160, 0.12);
-    --color-accent-soft-border: rgba(0, 178, 160, 0.22);
-    --color-accent-soft-text: #00e1c8;
+    --popover: 0 0% 100%;
+    --popover-foreground: 252 34% 13%;
 
-    --color-border: #2e2560;
-    --color-border-subtle: #3a2d70;
-    --color-border-strong: #5c4e8a;
-    --color-border-focus: #7c5af6;
+    --primary: 256 72% 56%;
+    --primary-foreground: 0 0% 100%;
 
-    --color-success: #22c55e;
-    --color-success-soft-bg: rgba(34, 197, 94, 0.12);
-    --color-success-soft-text: #4ade80;
-    --color-error: #ef4444;
-    --color-error-soft-bg: rgba(239, 68, 68, 0.12);
-    --color-warning: #f59e0b;
-    --color-warning-soft-bg: rgba(245, 158, 11, 0.12);
-    --color-warning-soft-text: #fcd34d;
+    --secondary: 252 100% 95%;
+    --secondary-foreground: 252 34% 13%;
 
-    --color-icon-default: #5c4e8a;
-    --color-icon-active: #9b7eff;
+    --muted: 252 100% 96%;
+    --muted-foreground: 252 15% 44%;
 
-    --color-recording-active: #ef4444;
-    --color-recording-active-bg: rgba(239, 68, 68, 0.18);
-    --color-waveform-bar: #7c5af6;
-    --color-waveform-bar-active: #00b2a0;
-    --color-waveform-track: #1c1638;
+    --accent: 173 100% 24%;
+    --accent-foreground: 0 0% 100%;
 
-    --color-input-bg: #0f0b22;
-    --color-input-placeholder: #5c4e8a;
-    --color-input-focus-border: #7c5af6;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --color-progress-track: #1c1638;
-    --color-progress-fill: #7c5af6;
-    --color-progress-warn: #f4a621;
-    --color-progress-critical: #ef4444;
+    --border: 252 35% 89%;
+    --input: 252 35% 89%;
+    --ring: 256 72% 56%;
 
-    --color-skeleton-base: #1c1638;
-    --color-skeleton-shimmer: #2e2560;
+    --radius: 0.875rem;
 
-    --color-overlay: rgba(13, 11, 26, 0.75);
+    --background-deep: 252 100% 96%;
+    --surface-elevated: 0 0% 100%;
+    --surface-hover: 252 100% 97%;
+    --tab-bar: 0 0% 100%;
 
-    --color-avatar-bg: #2e2560;
-    --color-avatar-text: #9b7eff;
-    --color-avatar-online: #22c55e;
+    --input-bg: 252 100% 99%;
+    --input-placeholder: 252 12% 54%;
+    --input-focus-border: 256 72% 56%;
 
-    --color-plan-pro: #f4a621;
-    --color-plan-pro-soft-bg: rgba(244, 166, 33, 0.15);
-    --color-plan-free: #c084fc;
-    --color-plan-free-soft-bg: rgba(192, 132, 252, 0.12);
+    --success: 142 76% 30%;
+    --success-foreground: 0 0% 100%;
 
-    --color-transcript-text: #e4deff;
-    --color-transcript-timestamp: #8a7ab8;
-    --color-transcript-highlight: rgba(124, 90, 246, 0.22);
-    --color-transcript-speaker: #1c1638;
-    --color-transcript-speaker-text: #9b7eff;
+    --warning: 38 92% 33%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 196 85% 35%;
+    --info-foreground: 0 0% 100%;
+
+    --icon-default: 252 10% 54%;
+    --icon-active: 256 72% 56%;
+
+    --recording: 0 72% 51%;
+    --recording-bg: 0 72% 51%;
+
+    --waveform-bar: 256 72% 56%;
+    --waveform-bar-active: 173 100% 24%;
+    --waveform-track: 252 100% 94%;
+
+    --progress-track: 252 30% 90%;
+    --progress-fill: 256 72% 56%;
+    --progress-warn: 38 92% 33%;
+    --progress-critical: 0 72% 51%;
+
+    --skeleton-base: 252 100% 96%;
+    --skeleton-shimmer: 252 30% 90%;
+
+    --overlay: 252 34% 13% / 0.72;
+
+    --avatar-bg: 252 100% 96%;
+    --avatar-text: 256 72% 42%;
+    --avatar-online: 142 76% 30%;
+
+    --plan-pro: 35 95% 33%;
+    --plan-pro-soft-bg: 35 95% 33% / 0.12;
+    --plan-free: 256 72% 56%;
+    --plan-free-soft-bg: 256 72% 56% / 0.12;
+
+    --transcript-text: 252 34% 13%;
+    --transcript-timestamp: 252 15% 44%;
+    --transcript-highlight: 256 72% 56%;
+    --transcript-speaker: 252 100% 95%;
+    --transcript-speaker-text: 256 72% 42%;
+
+    --chart-1: 256 72% 56%;
+    --chart-2: 173 100% 24%;
+    --chart-3: 142 76% 30%;
+    --chart-4: 38 92% 33%;
+    --chart-5: 0 72% 51%;
+
+    --shadow-soft: 0 12px 30px rgba(31, 24, 63, 0.06);
+    --shadow-glow: 0 0 0 1px rgba(107, 63, 224, 0.08), 0 12px 30px rgba(107, 63, 224, 0.12);
+  }
+
+  .dark:root {
+    color-scheme: dark;
+
+    --background: 251 44% 7%;
+    --foreground: 252 100% 96%;
+
+    --card: 251 38% 11%;
+    --card-foreground: 252 100% 96%;
+
+    --popover: 251 38% 11%;
+    --popover-foreground: 252 100% 96%;
+
+    --primary: 253 90% 70%;
+    --primary-foreground: 251 44% 7%;
+
+    --secondary: 255 35% 16%;
+    --secondary-foreground: 252 100% 96%;
+
+    --muted: 255 35% 16%;
+    --muted-foreground: 260 30% 60%;
+
+    --accent: 173 100% 35%;
+    --accent-foreground: 251 44% 7%;
+
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 255 28% 21%;
+    --input: 255 28% 21%;
+    --ring: 253 90% 70%;
+
+    --radius: 0.875rem;
+
+    --background-deep: 251 44% 5%;
+    --surface-elevated: 251 38% 11%;
+    --surface-hover: 255 35% 16%;
+    --tab-bar: 251 38% 11%;
+
+    --input-bg: 251 38% 11%;
+    --input-placeholder: 260 22% 51%;
+    --input-focus-border: 253 90% 70%;
+
+    --success: 142 76% 30%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 33%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 196 85% 35%;
+    --info-foreground: 0 0% 100%;
+
+    --icon-default: 260 22% 51%;
+    --icon-active: 253 90% 70%;
+
+    --recording: 0 84% 50%;
+    --recording-bg: 0 84% 50%;
+
+    --waveform-bar: 253 90% 70%;
+    --waveform-bar-active: 173 100% 35%;
+    --waveform-track: 255 35% 16%;
+
+    --progress-track: 255 35% 16%;
+    --progress-fill: 253 90% 70%;
+    --progress-warn: 38 92% 33%;
+    --progress-critical: 0 84% 50%;
+
+    --skeleton-base: 255 35% 16%;
+    --skeleton-shimmer: 255 28% 21%;
+
+    --overlay: 252 34% 5% / 0.72;
+
+    --avatar-bg: 255 28% 21%;
+    --avatar-text: 253 90% 72%;
+    --avatar-online: 142 76% 30%;
+
+    --plan-pro: 35 95% 33%;
+    --plan-pro-soft-bg: 35 95% 33% / 0.16;
+    --plan-free: 253 90% 70%;
+    --plan-free-soft-bg: 253 90% 70% / 0.16;
+
+    --transcript-text: 252 100% 96%;
+    --transcript-timestamp: 260 30% 60%;
+    --transcript-highlight: 253 90% 70%;
+    --transcript-speaker: 255 35% 16%;
+    --transcript-speaker-text: 253 90% 72%;
+
+    --chart-1: 253 90% 70%;
+    --chart-2: 173 100% 35%;
+    --chart-3: 142 76% 30%;
+    --chart-4: 38 92% 33%;
+    --chart-5: 0 84% 50%;
+
+    --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.24);
+    --shadow-glow: 0 0 0 1px rgba(124, 90, 246, 0.12), 0 12px 30px rgba(124, 90, 246, 0.16);
   }
 }
