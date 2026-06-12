@@ -1,1 +1,5 @@
-export type Language = "en-US" | "pt-BR" | "system";
+import { SUPPORTED_LANGUAGES } from '@/shared/constants/language';
+
+export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
+
+export type LanguagePreference = SupportedLanguage | 'system';
