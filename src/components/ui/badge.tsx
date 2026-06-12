@@ -36,7 +36,7 @@ const badgeVariants = cva(
   }
 );
 
-const badgeTextVariants = cva('font-medium text-xs', {
+const badgeTextVariants = cva('text-xs font-medium', {
   variants: {
     variant: {
       default: 'text-primary-foreground',
