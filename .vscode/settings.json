@@ -16,5 +16,6 @@
   "i18n-ally.keystyle": "flat",
   "i18n-ally.namespace": false,
   "i18n-ally.autoDetection": true,
-  "js/ts.suggestionActions.enabled": false
+  "js/ts.suggestionActions.enabled": false,
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
 }
