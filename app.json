@@ -7,12 +7,14 @@
     "icon": "./assets/voice-vault-play-store.png",
     "scheme": "voice-vault",
     "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "icon": "./assets/voice-vault-app-store.png",
       "bundleIdentifier": "com.vitorvalem.voicevault",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "supportsTablet": true
     },
     "android": {
       "package": "com.vitorvalem.voicevault",
@@ -20,6 +22,7 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
+      "bundler": "metro",
       "output": "static",
       "favicon": "./assets/voice-vault-favicon.png"
     },
@@ -29,9 +32,10 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#0d0b1a",
+          "resizeMode": "contain",
           "android": {
-            "image": "./assets/voice-vault-logo-dark.svg",
-            "imageWidth": 76
+            "image": "./assets/voice-vault-play-store.png",
+            "imageWidth": 94
           }
         }
       ],
