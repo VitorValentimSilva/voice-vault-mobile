@@ -13,6 +13,7 @@
       "@/app/*": ["./src/app/*"],
       "@/components/*": ["./src/components/*"],
       "@/storages/*": ["./src/storages/*"],
+      "@/locales/*": ["./src/locales/*"]
     },
     "types": ["node"],
     "moduleResolution": "bundler"
