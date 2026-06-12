@@ -1,8 +1,10 @@
 import authEnUs from './en-US/auth';
 import commonEnUs from './en-US/common';
+import errorEnUs from './en-US/error';
 import uiEnUs from './en-US/ui';
 import authPtBr from './pt-BR/auth';
 import commonPtBr from './pt-BR/common';
+import errorPtBr from './pt-BR/error';
 import uiPtBr from './pt-BR/ui';
 
 export const resources = {
@@ -11,6 +13,7 @@ export const resources = {
       ...commonEnUs,
       ...authEnUs,
       ...uiEnUs,
+      ...errorEnUs,
     },
   },
   'pt-BR': {
@@ -18,6 +21,7 @@ export const resources = {
       ...commonPtBr,
       ...authPtBr,
       ...uiPtBr,
+      ...errorPtBr,
     },
   },
 } as const;
