@@ -5,8 +5,14 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "paths": {
+      "@/assets/*": ["./assets/*"],
       "@/*": ["./src/*"],
-      "@/assets/*": ["./assets/*"]
+      "@/shared/*": ["./src/shared/*"],
+      "@/libs/*": ["./src/libs/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/app/*": ["./src/app/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/storages/*": ["./src/storages/*"],
     },
     "types": ["node"],
     "moduleResolution": "bundler"
