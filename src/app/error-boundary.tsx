@@ -1,13 +1,15 @@
+import * as Sentry from '@sentry/react-native';
 import { type ErrorBoundaryProps, router } from 'expo-router';
 import { AlertTriangle, ChevronDown, ChevronUp, Home, RotateCcw } from 'lucide-react-native';
 import { useColorScheme } from 'nativewind';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, View } from 'react-native';
-import Animated, { FadeInUp } from 'react-native-reanimated';
+import Animated, { FadeInUp, useReducedMotion } from 'react-native-reanimated';
 
 import { Background } from '@/components/screen/background';
 import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { THEME } from '@/shared/constants/theme';
 
@@ -16,19 +18,52 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   const { colorScheme } = useColorScheme();
 
   const [showDetails, setShowDetails] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
+  const reduceMotion = useReducedMotion();
+  const reportedErrorRef = useRef<Error | null>(null);
   const theme = colorScheme === 'dark' ? THEME.dark : THEME.light;
+
+  useEffect(() => {
+    if (reportedErrorRef.current === error) {
+      return;
+    }
+
+    reportedErrorRef.current = error;
+
+    if (__DEV__) {
+      console.error('[ErrorBoundary]', error);
+    }
+
+    Sentry.captureException(error, {
+      tags: { area: 'error-boundary' },
+      extra: { retryCount },
+    });
+  }, [error, retryCount]);
+
+  const handleRetry = () => {
+    setRetryCount((count) => count + 1);
+
+    retry();
+  };
+
+  const iconEntering = !reduceMotion ? FadeInUp.duration(500) : null;
+  const contentEntering = !reduceMotion ? FadeInUp.duration(500).delay(380) : null;
+  const detailsEntering = !reduceMotion ? FadeInUp.duration(500).delay(220) : null;
+  const buttonsEntering = !reduceMotion ? FadeInUp.duration(500).delay(320) : null;
 
   return (
     <Background gradient="surface" haveParticles haveGlow glowColor={theme.recordingBg}>
       <View className="flex-1 items-center justify-center gap-3">
-        <Animated.View entering={FadeInUp.duration(500)} className="items-center justify-center">
-          <AlertTriangle size={48} strokeWidth={1.75} color={theme.recording} />
+        <Animated.View
+          {...(iconEntering && { entering: iconEntering })}
+          className="items-center justify-center">
+          <Icon as={AlertTriangle} size={48} strokeWidth={1.75} color={theme.recording} />
         </Animated.View>
 
         <Animated.View
-          entering={FadeInUp.duration(500).delay(380)}
-          className="items-center"
+          {...(contentEntering && { entering: contentEntering })}
+          className="items-center gap-1"
           accessibilityRole="alert"
           accessibilityLiveRegion="polite">
           <Text variant="h4" className="text-center text-recording">
@@ -38,10 +73,16 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
           <Text variant="muted" className="max-w-xs text-center">
             {t('screens.errorBoundary.description')}
           </Text>
+
+          {retryCount >= 2 && (
+            <Text variant="muted" className="mt-1 max-w-xs text-center text-xs">
+              {t('screens.errorBoundary.persistentErrorHint')}
+            </Text>
+          )}
         </Animated.View>
 
         <Animated.View
-          entering={FadeInUp.duration(500).delay(220)}
+          {...(detailsEntering && { entering: detailsEntering })}
           className="w-full max-w-sm gap-2">
           <Pressable
             onPress={() => setShowDetails((prev) => !prev)}
@@ -54,17 +95,13 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
             }
             accessibilityHint={t('screens.errorBoundary.detailsHint')}
             className="flex-row items-center justify-center gap-1.5 py-2">
-            <Text variant="muted" className="text-xs font-medium text-muted-foreground">
+            <Text variant="muted" className="text-xs font-medium">
               {showDetails
                 ? t('screens.errorBoundary.hideDetails')
                 : t('screens.errorBoundary.showDetails')}
             </Text>
 
-            {showDetails ? (
-              <ChevronUp size={14} color={theme.mutedForeground} />
-            ) : (
-              <ChevronDown size={14} color={theme.mutedForeground} />
-            )}
+            <Icon as={showDetails ? ChevronUp : ChevronDown} size={14} color={theme.muted} />
           </Pressable>
 
           {showDetails && (
@@ -79,13 +116,15 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
         </Animated.View>
       </View>
 
-      <Animated.View entering={FadeInUp.duration(500).delay(320)} className="w-full gap-4">
+      <Animated.View
+        {...(buttonsEntering && { entering: buttonsEntering })}
+        className="w-full gap-4">
         <Button
           size="lg"
-          onPress={retry}
+          onPress={handleRetry}
           accessibilityLabel={t('buttons.retry')}
           accessibilityHint={t('buttons.retryHint')}>
-          <RotateCcw size={18} color={theme.primaryForeground} />
+          <Icon as={RotateCcw} size={18} color={theme.primaryForeground} />
 
           <Text>{t('buttons.retry')}</Text>
         </Button>
@@ -96,7 +135,7 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
           onPress={() => router.replace('/')}
           accessibilityLabel={t('buttons.backToHome')}
           accessibilityHint={t('buttons.backToHomeHint')}>
-          <Home size={18} color={theme.foreground} />
+          <Icon as={Home} size={18} color={theme.foreground} />
 
           <Text>{t('buttons.backToHome')}</Text>
         </Button>
