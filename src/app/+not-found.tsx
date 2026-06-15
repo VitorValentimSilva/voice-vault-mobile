@@ -62,7 +62,7 @@ export default function NotFoundScreen() {
       <Animated.View entering={FadeInUp.duration(500).delay(480)} className="gap-4">
         <Button
           size="lg"
-          onPress={() => router.back()}
+          onPress={() => router.replace('/')}
           accessibilityLabel={t('buttons.backToHome')}>
           <Text>{t('buttons.backToHome')}</Text>
         </Button>
@@ -70,7 +70,13 @@ export default function NotFoundScreen() {
         <Button
           variant="secondary"
           size="lg"
-          onPress={() => router.replace('/')}
+          onPress={() => {
+            if (router.canGoBack()) {
+              router.back();
+            } else {
+              router.replace('/');
+            }
+          }}
           accessibilityLabel={t('buttons.goBack')}>
           <Text>{t('buttons.goBack')}</Text>
         </Button>
