@@ -2,6 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SplashScreen } from 'expo-router';
 import { cssInterop, useColorScheme } from 'nativewind';
 import { useEffect } from 'react';
+import { View } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -20,19 +21,25 @@ cssInterop(LinearGradient, {
   className: 'style',
 });
 
-export function ParticleBackground({
-  children,
-  gradient,
-  haveParticles,
-  haveGlow,
-  glowColor,
-}: {
+type BackgroundProps = {
   children: React.ReactNode;
-  gradient: GradientKey;
-  haveParticles: boolean;
-  haveGlow: boolean;
+  haveParticles?: boolean;
+  haveGlow?: boolean;
   glowColor?: string;
-}) {
+  backgroundType?: 'gradient' | 'solid';
+  gradient?: GradientKey;
+  backgroundColor?: string;
+};
+
+export function Background({
+  children,
+  haveParticles = false,
+  haveGlow = false,
+  glowColor,
+  backgroundType = 'gradient',
+  gradient = 'screenBackground',
+  backgroundColor,
+}: BackgroundProps) {
   const { colorScheme } = useColorScheme();
 
   const insets = useSafeAreaInsets();
@@ -75,33 +82,62 @@ export function ParticleBackground({
     transform: [{ translateY: -133 }, { scale: glowScale.value }],
   }));
 
+  const contentStyle = {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: insets.top + 24,
+    paddingBottom: insets.bottom + 24,
+  };
+
+  const overlay = (
+    <>
+      {(haveGlow || haveParticles) && (
+        <Animated.View
+          pointerEvents="none"
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+          className="absolute inset-0">
+          {haveGlow && (
+            <Animated.View
+              className="absolute top-1/2 self-center rounded-full"
+              style={[
+                glowStyle,
+                {
+                  backgroundColor: glowColor ?? theme.foreground,
+                },
+              ]}
+            />
+          )}
+
+          {haveParticles && <ParticleGroup />}
+        </Animated.View>
+      )}
+
+      {children}
+    </>
+  );
+
   return (
     <Animated.View className="flex-1" style={screenStyle}>
-      <LinearGradient
-        className="flex-1 px-6"
-        colors={theme.gradients[gradient]}
-        start={{ x: 0.1, y: 0 }}
-        end={{ x: 0.9, y: 1 }}
-        style={{
-          paddingTop: insets.top + 24,
-          paddingBottom: insets.bottom + 24,
-        }}>
-        {haveGlow && (
-          <Animated.View
-            className="absolute top-1/2 self-center rounded-full"
-            style={[
-              glowStyle,
-              {
-                backgroundColor: glowColor ?? theme.foreground,
-              },
-            ]}
-          />
-        )}
-
-        {haveParticles && <ParticleGroup />}
-
-        {children}
-      </LinearGradient>
+      {backgroundType === 'gradient' ? (
+        <LinearGradient
+          className="flex-1"
+          colors={theme.gradients[gradient]}
+          start={{ x: 0.1, y: 0 }}
+          end={{ x: 0.9, y: 1 }}
+          style={contentStyle}>
+          {overlay}
+        </LinearGradient>
+      ) : (
+        <View
+          className="flex-1"
+          style={{
+            ...contentStyle,
+            backgroundColor: backgroundColor ?? theme.background,
+          }}>
+          {overlay}
+        </View>
+      )}
     </Animated.View>
   );
 }
