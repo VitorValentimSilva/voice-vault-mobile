@@ -8,6 +8,7 @@ const ui = {
       title: 'Something went wrong',
       description:
         'We encountered an unexpected issue. Please try again or go back to the home screen.',
+      persistentErrorHint: 'If the problem persists, try restarting the app.',
       hideDetails: 'Hide technical details',
       showDetails: 'Show technical details',
       detailsHint: 'Displays the technical error message, useful for reporting to support',

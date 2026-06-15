@@ -7,6 +7,7 @@ const ui = {
     errorBoundary: {
       title: 'Algo deu errado',
       description: 'Encontramos um problema inesperado. Tente novamente ou volte para o início.',
+      persistentErrorHint: 'Se o problema continuar, tente reiniciar o app.',
       hideDetails: 'Ocultar detalhes técnicos',
       showDetails: 'Mostrar detalhes técnicos',
       detailsHint: 'Exibe a mensagem técnica do erro, útil para reportar ao suporte',
