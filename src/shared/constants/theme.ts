@@ -104,6 +104,14 @@ export const THEME = {
       shieldFill: 'rgba(107,63,224,0.10)',
       shieldStroke: '#6B3FE0',
     },
+
+    gradients: {
+      screenBackground: ['#F4EEFF', '#F8F7FF', '#EDFDFC'],
+      surface: ['#FFFFFF', '#F7F5FF'],
+      hero: ['#6B3FE0', '#8B6EF7', '#00A99D'],
+      premium: ['#C77D00', '#F4A100', '#FFD166'],
+      cardGlow: ['rgba(107,63,224,0.16)', 'rgba(0,169,157,0.08)'],
+    },
   },
 
   dark: {
@@ -205,8 +213,16 @@ export const THEME = {
       shieldFill: 'rgba(124,90,246,0.18)',
       shieldStroke: '#7C5AF6',
     },
+
+    gradients: {
+      screenBackground: ['#241C49', '#131024', '#0C1616'],
+      surface: ['#1C1736', '#14112A'],
+      hero: ['#7C5AF6', '#9B7EFF', '#00B2A0'],
+      premium: ['#A86400', '#C77D00', '#F4A100'],
+      cardGlow: ['rgba(124,90,246,0.22)', 'rgba(0,178,160,0.10)'],
+    },
   },
-};
+} as const;
 
 export const NAV_THEME = {
   light: {
