@@ -16,7 +16,13 @@ import {
 
 import { THEME } from '@/shared/constants/theme';
 
-export function Icon({ size = 96 }: { size?: number }) {
+type IconProps = {
+  size?: number;
+  decorative?: boolean;
+  accessibilityLabel?: string;
+};
+
+export function Icon({ size = 96, decorative = true, accessibilityLabel }: IconProps) {
   const { colorScheme } = useColorScheme();
 
   const theme = colorScheme === 'dark' ? THEME.dark : THEME.light;
@@ -35,7 +41,19 @@ export function Icon({ size = 96 }: { size?: number }) {
   }));
 
   return (
-    <Animated.View className="mb-5" entering={FadeIn.duration(700).delay(100)} style={iconStyle}>
+    <Animated.View
+      className="mb-5"
+      entering={FadeIn.duration(700).delay(100)}
+      style={iconStyle}
+      accessible={!decorative}
+      accessibilityRole={decorative ? undefined : 'image'}
+      accessibilityLabel={decorative ? undefined : (accessibilityLabel ?? 'Voice Vault')}
+      {...(decorative
+        ? {
+            accessibilityElementsHidden: true,
+            importantForAccessibility: 'no-hide-descendants' as const,
+          }
+        : {})}>
       <Svg width={size} height={size} viewBox="0 0 120 120">
         <Defs>
           <ClipPath id={`${uniqueId}-clip`}>
@@ -44,11 +62,13 @@ export function Icon({ size = 96 }: { size?: number }) {
 
           <LinearGradient id={bgGradientId} x1="0" y1="0" x2="1" y2="1">
             <Stop offset="0%" stopColor={theme.logo.bgStart} />
+
             <Stop offset="100%" stopColor={theme.logo.bgEnd} />
           </LinearGradient>
 
           <LinearGradient id={waveGradientId} x1="0" y1="0" x2="1" y2="0">
             <Stop offset="0%" stopColor={theme.logo.waveStart} />
+
             <Stop offset="100%" stopColor={theme.logo.waveEnd} />
           </LinearGradient>
         </Defs>
@@ -73,14 +93,14 @@ export function Icon({ size = 96 }: { size?: number }) {
 
           <Polyline
             points="
-        48,47
-        53,47
-        57,38
-        61,56
-        65,40
-        69,52
-        73,47
-      "
+              48,47
+              53,47
+              57,38
+              61,56
+              65,40
+              69,52
+              73,47
+            "
             fill="none"
             stroke={`url(#${waveGradientId})`}
             strokeWidth="3.5"
