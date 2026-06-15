@@ -1,6 +1,5 @@
-import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from 'nativewind';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { applyLanguagePreference } from '@/libs/i18n';
 import { useAppPreferencesStore } from '@/storages/use-app-preferences-store';
@@ -11,15 +10,21 @@ export function useAppBootstrap() {
   const languagePreference = useAppPreferencesStore((state) => state.languagePreference);
   const themePreference = useAppPreferencesStore((state) => state.themePreference);
 
-  useEffect(() => {
-    void SplashScreen.hideAsync();
-  }, []);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    void applyLanguagePreference(languagePreference);
-  }, [languagePreference]);
+    async function bootstrap() {
+      try {
+        await applyLanguagePreference(languagePreference);
 
-  useEffect(() => {
-    setColorScheme(themePreference);
-  }, [themePreference, setColorScheme]);
+        setColorScheme(themePreference);
+      } finally {
+        setIsReady(true);
+      }
+    }
+
+    void bootstrap();
+  }, [languagePreference, themePreference, setColorScheme]);
+
+  return isReady;
 }
