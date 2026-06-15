@@ -11,8 +11,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import { ParticleBackground } from '@/components/background/particle-background';
 import { Icon } from '@/components/common/icon';
+import { Background } from '@/components/screen/background';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 
@@ -36,8 +36,12 @@ export default function NotFoundScreen() {
   }));
 
   return (
-    <ParticleBackground gradient="screenBackground" haveParticles haveGlow={false}>
-      <View className="flex-1 items-center justify-center">
+    <Background
+      backgroundType="gradient"
+      gradient="screenBackground"
+      haveParticles
+      haveGlow={false}>
+      <View className="flex-1 items-center justify-center gap-5">
         <Icon size={110} />
 
         <Animated.Text
@@ -48,7 +52,7 @@ export default function NotFoundScreen() {
 
         <Animated.View
           entering={FadeInUp.duration(500).delay(380)}
-          className="mt-1 items-center gap-2 px-2">
+          className="items-center gap-2 px-2">
           <Text className="text-center text-[22px] font-semibold leading-8 text-foreground">
             {t('screens.notFound.title')}
           </Text>
@@ -59,7 +63,7 @@ export default function NotFoundScreen() {
         </Animated.View>
       </View>
 
-      <Animated.View entering={FadeInUp.duration(500).delay(480)} className="gap-4">
+      <Animated.View entering={FadeInUp.duration(500).delay(480)} className="w-full gap-4 pb-2">
         <Button
           size="lg"
           onPress={() => router.replace('/')}
@@ -81,6 +85,6 @@ export default function NotFoundScreen() {
           <Text>{t('buttons.goBack')}</Text>
         </Button>
       </Animated.View>
-    </ParticleBackground>
+    </Background>
   );
 }
