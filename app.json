@@ -27,6 +27,7 @@
       "favicon": "./assets/voice-vault-favicon.png"
     },
     "plugins": [
+      "@clerk/expo",
       "expo-router",
       [
         "expo-splash-screen",
