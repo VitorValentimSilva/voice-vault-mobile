@@ -83,8 +83,6 @@ export function Background({
   }));
 
   const contentStyle = {
-    flex: 1,
-    paddingHorizontal: 24,
     paddingTop: insets.top + 24,
     paddingBottom: insets.bottom + 24,
   };
@@ -121,7 +119,7 @@ export function Background({
     <Animated.View className="flex-1" style={screenStyle}>
       {backgroundType === 'gradient' ? (
         <LinearGradient
-          className="flex-1"
+          className="flex-1 px-6"
           colors={theme.gradients[gradient]}
           start={{ x: 0.1, y: 0 }}
           end={{ x: 0.9, y: 1 }}
@@ -130,7 +128,7 @@ export function Background({
         </LinearGradient>
       ) : (
         <View
-          className="flex-1"
+          className="flex-1 px-6"
           style={{
             ...contentStyle,
             backgroundColor: backgroundColor ?? theme.background,
