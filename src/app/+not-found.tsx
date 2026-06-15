@@ -41,7 +41,7 @@ export default function NotFoundScreen() {
       gradient="screenBackground"
       haveParticles
       haveGlow={false}>
-      <View className="flex-1 items-center justify-center gap-5">
+      <View className="flex-1 items-center justify-center gap-3">
         <Icon size={110} />
 
         <Animated.Text
@@ -52,7 +52,9 @@ export default function NotFoundScreen() {
 
         <Animated.View
           entering={FadeInUp.duration(500).delay(380)}
-          className="items-center gap-2 px-2">
+          className="items-center"
+          accessibilityRole="alert"
+          accessibilityLiveRegion="polite">
           <Text variant="h4" className="text-center">
             {t('screens.notFound.title')}
           </Text>
@@ -63,7 +65,7 @@ export default function NotFoundScreen() {
         </Animated.View>
       </View>
 
-      <Animated.View entering={FadeInUp.duration(500).delay(480)} className="w-full gap-4 pb-2">
+      <Animated.View entering={FadeInUp.duration(500).delay(480)} className="w-full gap-4">
         <Button
           size="lg"
           onPress={() => router.replace('/')}

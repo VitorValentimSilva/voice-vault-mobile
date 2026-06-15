@@ -21,14 +21,14 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
 
   return (
     <Background gradient="surface" haveParticles haveGlow glowColor={theme.recordingBg}>
-      <View className="flex-1 items-center justify-center gap-6 px-2">
+      <View className="flex-1 items-center justify-center gap-3">
         <Animated.View entering={FadeInUp.duration(500)} className="items-center justify-center">
           <AlertTriangle size={48} strokeWidth={1.75} color={theme.recording} />
         </Animated.View>
 
         <Animated.View
-          entering={FadeInUp.duration(500).delay(120)}
-          className="items-center gap-2 px-2"
+          entering={FadeInUp.duration(500).delay(380)}
+          className="items-center"
           accessibilityRole="alert"
           accessibilityLiveRegion="polite">
           <Text variant="h4" className="text-center text-recording">
@@ -69,7 +69,7 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
 
           {showDetails && (
             <ScrollView
-              className="max-h-32 rounded-2xl border border-border bg-card p-3"
+              className="max-h-32 rounded-2xl border border-border bg-card p-2"
               accessibilityLabel={t('errorMessage')}>
               <Text variant="code" selectable className="text-muted-foreground">
                 {error?.message ?? t('unknownError')}
@@ -79,7 +79,7 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
         </Animated.View>
       </View>
 
-      <Animated.View entering={FadeInUp.duration(500).delay(320)} className="w-full gap-2.5 pb-2">
+      <Animated.View entering={FadeInUp.duration(500).delay(320)} className="w-full gap-4">
         <Button
           size="lg"
           onPress={retry}
@@ -91,7 +91,7 @@ export default function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
         </Button>
 
         <Button
-          variant="outline"
+          variant="secondary"
           size="lg"
           onPress={() => router.replace('/')}
           accessibilityLabel={t('buttons.backToHome')}
