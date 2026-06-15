@@ -4,6 +4,10 @@ const common = {
       name: 'Padrão',
     },
   },
+  buttons: {
+    goBack: 'Voltar',
+    backToHome: 'Voltar para Início',
+  },
 } as const;
 
 export default common;
