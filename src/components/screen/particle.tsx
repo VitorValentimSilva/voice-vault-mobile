@@ -55,6 +55,9 @@ export function Particle({
 
   return (
     <Animated.View
+      pointerEvents="none"
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
       style={[
         {
           position: 'absolute',
