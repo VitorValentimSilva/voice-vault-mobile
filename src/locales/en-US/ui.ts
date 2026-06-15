@@ -12,6 +12,10 @@ const ui = {
       showDetails: 'Show technical details',
       detailsHint: 'Displays the technical error message, useful for reporting to support',
     },
+    splash: {
+      title: 'Voice Vault',
+      description: 'Protect your memories with security and privacy, using only your voice.',
+    },
   },
 } as const;
 
