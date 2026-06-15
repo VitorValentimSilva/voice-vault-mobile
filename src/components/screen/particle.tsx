@@ -11,21 +11,16 @@ import Animated, {
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 
-export function Particle({
-  color,
-  size,
-  top,
-  left,
-  delayMs,
-  travelY,
-}: {
+type ParticleProps = {
   color: string;
   size: number;
   top: number;
   left: number;
   delayMs: number;
   travelY: number;
-}) {
+};
+
+export function Particle({ color, size, top, left, delayMs, travelY }: ParticleProps) {
   const y = useSharedValue(0);
   const op = useSharedValue(0);
 
