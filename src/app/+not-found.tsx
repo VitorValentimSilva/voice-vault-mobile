@@ -1,10 +1,11 @@
-import { router, SplashScreen } from 'expo-router';
+import { router } from 'expo-router';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import Animated, {
   FadeInUp,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withRepeat,
   withSequence,
@@ -19,21 +20,27 @@ import { Text } from '@/components/ui/text';
 export default function NotFoundScreen() {
   const { t } = useTranslation();
 
+  const reduceMotion = useReducedMotion();
   const breathingScale = useSharedValue(1);
 
   useEffect(() => {
-    SplashScreen.hideAsync().catch(() => {});
+    if (reduceMotion) {
+      return;
+    }
 
     breathingScale.value = withRepeat(
       withSequence(withTiming(1.025, { duration: 900 }), withTiming(1, { duration: 900 })),
       -1,
       true
     );
-  }, [breathingScale]);
+  }, [breathingScale, reduceMotion]);
 
   const breathingStyle = useAnimatedStyle(() => ({
     transform: [{ scale: breathingScale.value }],
   }));
+
+  const contentEntering = !reduceMotion ? FadeInUp.duration(500).delay(380) : undefined;
+  const buttonsEntering = !reduceMotion ? FadeInUp.duration(500).delay(480) : undefined;
 
   return (
     <Background
@@ -42,16 +49,18 @@ export default function NotFoundScreen() {
       haveParticles
       haveGlow={false}>
       <View className="flex-1 items-center justify-center gap-3">
-        <Icon size={110} />
+        <Icon size={110} decorative />
 
         <Animated.Text
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
           className="text-6xl font-bold leading-none tracking-tighter text-primary"
-          style={breathingStyle}>
+          style={reduceMotion ? undefined : breathingStyle}>
           404
         </Animated.Text>
 
         <Animated.View
-          entering={FadeInUp.duration(500).delay(380)}
+          {...(contentEntering ? { entering: contentEntering } : {})}
           className="items-center"
           accessibilityRole="alert"
           accessibilityLiveRegion="polite">
@@ -65,7 +74,9 @@ export default function NotFoundScreen() {
         </Animated.View>
       </View>
 
-      <Animated.View entering={FadeInUp.duration(500).delay(480)} className="w-full gap-4">
+      <Animated.View
+        {...(buttonsEntering ? { entering: buttonsEntering } : {})}
+        className="w-full gap-4">
         <Button
           size="lg"
           onPress={() => router.replace('/')}
