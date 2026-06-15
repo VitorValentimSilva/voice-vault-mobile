@@ -53,11 +53,11 @@ export default function NotFoundScreen() {
         <Animated.View
           entering={FadeInUp.duration(500).delay(380)}
           className="items-center gap-2 px-2">
-          <Text className="text-center text-[22px] font-semibold leading-8 text-foreground">
+          <Text variant="h4" className="text-center">
             {t('screens.notFound.title')}
           </Text>
 
-          <Text className="max-w-xs text-center text-sm leading-6 text-muted-foreground">
+          <Text variant="muted" className="max-w-xs text-center">
             {t('screens.notFound.description')}
           </Text>
         </Animated.View>
