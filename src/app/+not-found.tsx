@@ -67,7 +67,8 @@ export default function NotFoundScreen() {
         <Button
           size="lg"
           onPress={() => router.replace('/')}
-          accessibilityLabel={t('buttons.backToHome')}>
+          accessibilityLabel={t('buttons.backToHome')}
+          accessibilityHint={t('buttons.backToHomeHint')}>
           <Text>{t('buttons.backToHome')}</Text>
         </Button>
 
@@ -81,7 +82,8 @@ export default function NotFoundScreen() {
               router.replace('/');
             }
           }}
-          accessibilityLabel={t('buttons.goBack')}>
+          accessibilityLabel={t('buttons.goBack')}
+          accessibilityHint={t('buttons.goBackHint')}>
           <Text>{t('buttons.goBack')}</Text>
         </Button>
       </Animated.View>
