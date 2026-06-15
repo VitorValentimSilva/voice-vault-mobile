@@ -1,3 +1,4 @@
+import { useAuth } from '@clerk/expo';
 import { useColorScheme } from 'nativewind';
 import { useEffect, useState } from 'react';
 
@@ -6,11 +7,12 @@ import { useAppPreferencesStore } from '@/storages/use-app-preferences-store';
 
 export function useAppBootstrap() {
   const { setColorScheme } = useColorScheme();
+  const { isLoaded: isAuthLoaded } = useAuth();
+
+  const [preferencesReady, setPreferencesReady] = useState(false);
 
   const languagePreference = useAppPreferencesStore((state) => state.languagePreference);
   const themePreference = useAppPreferencesStore((state) => state.themePreference);
-
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     async function bootstrap() {
@@ -19,12 +21,12 @@ export function useAppBootstrap() {
 
         setColorScheme(themePreference);
       } finally {
-        setIsReady(true);
+        setPreferencesReady(true);
       }
     }
 
     void bootstrap();
   }, [languagePreference, themePreference, setColorScheme]);
 
-  return isReady;
+  return preferencesReady && isAuthLoaded;
 }
