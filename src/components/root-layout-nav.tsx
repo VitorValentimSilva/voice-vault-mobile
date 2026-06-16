@@ -41,9 +41,14 @@ export function RootLayoutNav() {
         <Stack
           screenOptions={{
             headerShown: false,
-            contentStyle: { backgroundColor: 'transparent' },
-          }}
-        />
+            contentStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}>
+          <Stack.Screen name="(auth)" />
+
+          <Stack.Screen name="(protected)" />
+        </Stack>
       </PostHogProvider>
     </ThemeProvider>
   );
