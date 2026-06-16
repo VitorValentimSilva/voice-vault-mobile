@@ -6,6 +6,9 @@ const error = {
   },
   errorMessage: 'Error message',
   unknownError: 'Unknown error',
+  clerk: {
+    missingPublishableKey: 'Clerk Publishable Key is missing in the app configuration.',
+  },
 } as const;
 
 export default error;
