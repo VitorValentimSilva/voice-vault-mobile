@@ -35,7 +35,7 @@ export default function SplashScreen() {
       return;
     }
 
-    router.replace(isSignedIn ? '/(tabs)' : '/(auth)/sign-in');
+    router.replace(isSignedIn ? '/(protected)/(tabs)/home' : '/(auth)/sign-in');
   }, [isLoaded, minHoldElapsed, isSignedIn]);
 
   const animatedProps = !reduceMotion ? { entering: FadeInUp.duration(500).delay(380) } : {};
